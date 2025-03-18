@@ -21,6 +21,9 @@ const TableRow = ({ series, sortOrder, reRenderTable }) => {
   const titleCell = document.createElement('td')
   titleCell.textContent = series.title
   titleCell.classList.add('title-cell') // Add a class for potential styling
+  const titleIcon = document.createElement('img')
+  titleIcon.src = '/static/pen.svg'
+  titleCell.appendChild(titleIcon)
   titleCell.addEventListener('click', () => {
     // Navigate to the edit page for this series
     window.navigate(`edit/${series.id}`)
@@ -51,7 +54,10 @@ const TableRow = ({ series, sortOrder, reRenderTable }) => {
   // Delete button
   const deleteCell = document.createElement('td')
   const deleteButton = document.createElement('button')
-  deleteButton.textContent = 'Delete'
+  const imgDelete = document.createElement('img')
+  imgDelete.src = '/static/trash.svg'
+  deleteButton.appendChild(imgDelete)
+
   deleteButton.classList.add('delete-button')
   deleteButton.addEventListener('click', async () => {
     const confirmed = confirm(`Are you sure you want to delete "${series.title}"?`)

@@ -22,7 +22,7 @@ const SeriesForm = ({ series = {}, onSubmit }) => {
   titleInput.placeholder = 'Title'
   titleInput.value = series.title || ''
   titleInput.classList.add('form-input')
-  container.appendChild(createLabeledInput('Title', titleInput))
+  container.appendChild(createLabeledInput('Title:', titleInput))
 
   // Status dropdown
   const statusDropdown = document.createElement('select')
@@ -37,7 +37,7 @@ const SeriesForm = ({ series = {}, onSubmit }) => {
     statusDropdown.appendChild(option)
   })
   statusDropdown.classList.add('form-select')
-  container.appendChild(createLabeledInput('Status', statusDropdown))
+  container.appendChild(createLabeledInput('Status:', statusDropdown))
 
   // Last Episode Watched input
   const lastEpisodeInput = document.createElement('input')
@@ -45,7 +45,7 @@ const SeriesForm = ({ series = {}, onSubmit }) => {
   lastEpisodeInput.placeholder = 'Last Episode Watched'
   lastEpisodeInput.value = series.lastEpisodeWatched || 0
   lastEpisodeInput.classList.add('form-input')
-  container.appendChild(createLabeledInput('Last Episode Watched', lastEpisodeInput))
+  container.appendChild(createLabeledInput('Last Episode Watched:', lastEpisodeInput))
 
   // Total Episodes input
   const totalEpisodesInput = document.createElement('input')
@@ -53,7 +53,7 @@ const SeriesForm = ({ series = {}, onSubmit }) => {
   totalEpisodesInput.placeholder = 'Total Episodes'
   totalEpisodesInput.value = series.totalEpisodes || 0
   totalEpisodesInput.classList.add('form-input')
-  container.appendChild(createLabeledInput('Total Episodes', totalEpisodesInput))
+  container.appendChild(createLabeledInput('Total Episodes:', totalEpisodesInput))
 
   // Ranking input
   const rankingInput = document.createElement('input')
@@ -61,7 +61,7 @@ const SeriesForm = ({ series = {}, onSubmit }) => {
   rankingInput.placeholder = 'Ranking'
   rankingInput.value = series.ranking || 0
   rankingInput.classList.add('form-input')
-  container.appendChild(createLabeledInput('Ranking', rankingInput))
+  container.appendChild(createLabeledInput('Ranking:', rankingInput))
 
   // Submit button
   const submitButton = document.createElement('button')

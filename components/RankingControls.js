@@ -7,9 +7,15 @@ const RankingControls = ({ ranking, sortOrder, seriesId, reRenderTable }) => {
   num.textContent = ranking
   container.appendChild(num)
 
+  const buttons = document.createElement('div')
+  buttons.classList.add('buttons')
+
   // Upvote button
   const upButton = document.createElement('button')
-  upButton.textContent = 'Up'
+  const upImg = document.createElement('img')
+  upImg.src = '/static/up.svg'
+  upButton.appendChild(upImg)
+
   upButton.addEventListener('click', async () => {
     try {
       const direction = sortOrder === 'asc' ? 'downvote' : 'upvote'
@@ -20,11 +26,14 @@ const RankingControls = ({ ranking, sortOrder, seriesId, reRenderTable }) => {
       console.error('Failed to update ranking:', error)
     }
   })
-  container.appendChild(upButton)
+  buttons.appendChild(upButton)
 
   // Downvote button
   const downButton = document.createElement('button')
-  downButton.textContent = 'Down'
+  const downImg = document.createElement('img')
+  downImg.src = '/static/down.svg'
+  downButton.appendChild(downImg)
+
   downButton.addEventListener('click', async () => {
     try {
       const direction = sortOrder === 'asc' ? 'upvote' : 'downvote'
@@ -35,7 +44,9 @@ const RankingControls = ({ ranking, sortOrder, seriesId, reRenderTable }) => {
       console.error('Failed to update ranking:', error)
     }
   })
-  container.appendChild(downButton)
+  buttons.appendChild(downButton)
+
+  container.appendChild(buttons)
 
   return container
 }

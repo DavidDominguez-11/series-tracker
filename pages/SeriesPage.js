@@ -59,6 +59,10 @@ const SeriesPage = (parentElement) => {
     const addNewButton = document.createElement('button')
     addNewButton.textContent = 'Add New'
     addNewButton.classList.add('add-new-button') // Add a class for potential styling
+    const addNewLogo = document.createElement('img')
+    addNewLogo.src = './static/add.svg'
+    addNewButton.append(addNewLogo)
+    addNewButton.append()
     addNewButton.addEventListener('click', () => {
       // Navigate to the CreateSeriesPage
       window.navigate('create')

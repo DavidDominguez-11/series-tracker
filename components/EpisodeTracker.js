@@ -11,7 +11,9 @@ const EpisodeTracker = ({ lastEpisodeWatched, totalEpisodes, seriesId, reRenderT
 
   // Create the +1 button
   const incrementButton = document.createElement('button')
-  incrementButton.textContent = '+1'
+  const incrementImage = document.createElement('img')
+  incrementImage.src = '/static/plus.svg'
+  incrementButton.appendChild(incrementImage)
   incrementButton.disabled = lastEpisodeWatched >= totalEpisodes
   incrementButton.addEventListener('click', async () => {
     try {
