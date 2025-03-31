@@ -13,7 +13,7 @@ const RankingControls = ({ ranking, sortOrder, seriesId, reRenderTable }) => {
   // Upvote button
   const upButton = document.createElement('button')
   const upImg = document.createElement('img')
-  upImg.src = '/static/up.svg'
+  upImg.src = 'series-tracker/frontend/static/up.svg'
   upButton.appendChild(upImg)
 
   upButton.addEventListener('click', async () => {

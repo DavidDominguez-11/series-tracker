@@ -34,6 +34,12 @@ func main() {
 	r.HandleFunc("/api/series/{id}", handlers.UpdateSeries).Methods("PUT")
 	r.HandleFunc("/api/series/{id}", handlers.DeleteSeries).Methods("DELETE")
 
+	// rutas para lo demas
+	r.HandleFunc("/api/series/{id}/episode", handlers.IncrementEpisode).Methods("PATCH")
+	r.HandleFunc("/api/series/{id}/upvote", handlers.UpvoteRanking).Methods("PATCH")
+	r.HandleFunc("/api/series/{id}/downvote", handlers.DownvoteRanking).Methods("PATCH")
+	r.HandleFunc("/api/series/{id}/status", handlers.UpdateStatus).Methods("PATCH")
+
 	// Envolver el router con CORS
 	handler := c.Handler(r)
 

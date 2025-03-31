@@ -4,7 +4,7 @@ type Series struct {
 	ID                 int     `json:"id"`
 	Title              string  `json:"title"`
 	Status             string  `json:"status"`
-	LastEpisodeWatched int     `json:"last_episode_watched"`
-	TotalEpisodes      *int    `json:"total_episodes"`
+	LastEpisodeWatched int     `json:"lastEpisodeWatched"`
+	TotalEpisodes      *int    `json:"totalEpisodes"`
 	Ranking            *int    `json:"ranking"`
 }
