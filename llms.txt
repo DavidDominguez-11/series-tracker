@@ -1,0 +1,80 @@
+=== API Documentation for LLM Integration ===
+Base URL: http://localhost:8080/api
+
+Endpoints disponibles para integración con modelos de lenguaje:
+
+1. Obtener todas las series
+GET /series
+Ejemplo de respuesta:
+[
+  {
+    "id": 1,
+    "title": "Breaking Bad",
+    "status": "Watching",
+    "lastEpisodeWatched": 5,
+    "totalEpisodes": 62,
+    "ranking": 9
+  }
+]
+
+2. Crear nueva serie
+POST /series
+Cuerpo requerido (JSON):
+{
+  "title": "Nuevo título",
+  "status": "Plan to Watch",
+  "lastEpisodeWatched": 0,
+  "totalEpisodes": 24,
+  "ranking": 0
+}
+
+3. Actualizar progreso de episodios
+PATCH /series/{id}/episode
+Ejemplo de uso: Incrementar el último episodio visto
+
+4. Modificar ranking
+PATCH /series/{id}/upvote   ➔ Aumentar ranking +1
+PATCH /series/{id}/downvote ➔ Disminuir ranking -1
+
+5. Buscar series por estado
+GET /series?status=Completed
+Parámetros disponibles:
+- search: texto para buscar en títulos
+- status: filtrar por estado
+- sort: ordenar ranking (asc/desc)
+
+Ejemplos de prompts para LLMs:
+
+1. "El usuario quiere agregar una nueva serie: 
+   - Título: The Office
+   - Estado: Plan to Watch
+   - Episodios totales: 201"
+   ➔ POST /series con cuerpo JSON
+
+2. "El usuario terminó el episodio 10 de la serie con ID 3"
+   ➔ PATCH /series/3/episode
+
+3. "Mostrar todas las series en estado 'Watching' ordenadas por ranking"
+   ➔ GET /series?status=Watching&sort=desc
+
+4. "El usuario quiere disminuir el ranking de la serie con ID 5"
+   ➔ PATCH /series/5/downvote
+
+Consideraciones para LLMs:
+- Usar métodos HTTP adecuados (GET/POST/PATCH)
+- Los IDs numéricos son requeridos para operaciones específicas
+- Validar estados permitidos: Plan to Watch, Watching, Dropped, Completed
+- El ranking puede ser null (no votado)
+- Manejar errores con códigos HTTP (400, 404, 500)
+
+Ejemplo de interacción completa:
+Usuario: "Quiero agregar 'Stranger Things' a mi lista con 25 episodios"
+LLM debe:
+1. Crear payload JSON:
+{
+  "title": "Stranger Things",
+  "status": "Plan to Watch",
+  "totalEpisodes": 25
+}
+2. Realizar POST a /series
+3. Mostrar confirmación al usuario
