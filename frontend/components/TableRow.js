@@ -22,7 +22,7 @@ const TableRow = ({ series, sortOrder, reRenderTable }) => {
   titleCell.textContent = series.title
   titleCell.classList.add('title-cell') // Add a class for potential styling
   const titleIcon = document.createElement('img')
-  titleIcon.src = 'series-tracker/frontend/static/pen.svg'  
+  titleIcon.src = '/static/pen.svg'
   titleCell.appendChild(titleIcon)
   titleCell.addEventListener('click', () => {
     // Navigate to the edit page for this series
