@@ -23,6 +23,7 @@ func main(){
 		log.Fatal("failed to connect to db", err)
 	}
 
+	// router
 	r:= chi.NewRouter()
 	r.Use(middleware.Logger)
 
