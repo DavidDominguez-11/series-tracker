@@ -13,7 +13,7 @@ const RankingControls = ({ ranking, sortOrder, seriesId, reRenderTable }) => {
   // Upvote button
   const upButton = document.createElement('button')
   const upImg = document.createElement('img')
-  upImg.src = '/static/up.svg'
+  upImg.src = './static/up.svg'
   upButton.appendChild(upImg)
 
   upButton.addEventListener('click', async () => {
@@ -31,7 +31,7 @@ const RankingControls = ({ ranking, sortOrder, seriesId, reRenderTable }) => {
   // Downvote button
   const downButton = document.createElement('button')
   const downImg = document.createElement('img')
-  downImg.src = '/static/down.svg'
+  downImg.src = './static/down.svg'
   downButton.appendChild(downImg)
 
   downButton.addEventListener('click', async () => {
