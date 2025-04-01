@@ -1,54 +1,100 @@
-# Series Tracker
+# 🎦 Series Tracker - Gestor de Series
+Aplicación full-stack para gestionar tu lista de series, con seguimiento de episodios, estados y sistema de ranking. Desarrollada con **Go (Backend)**, **MySQL (Base de datos)** y **JavaScript Vanilla (Frontend)**.
 
-## Cómo correr el programa
+## 🌟 Características principales
 
-### 1 Iniciar la base de datos y el backend
-Dirígete a la carpeta `database` y ejecuta el siguiente comando para levantar los servicios con Docker:
+- ✅ **CRUD completo** de series con títulos, estados y episodios
+- 📊 **Seguimiento de progreso** con incremento de episodios vistos
+- 🏆 **Sistema de ranking** con votación positiva/negativa
+- 🔍 **Filtrado avanzado** por estado, búsqueda y ordenamiento
+- 🛠 **Interfaz responsive** que funciona en móviles y desktop
+- 🐳 **Despliegue con Docker** para fácil configuración
 
-```sh
-docker-compose up --build -d
+## 🛠 Tecnologías utilizadas
+
+| Área          | Tecnologías                                                                 |
+|---------------|-----------------------------------------------------------------------------|
+| **Frontend**  | JavaScript Vanilla, CSS3, HTML5                                            |
+| **Backend**   | Go (Golang), Gorilla Mux (Router), MySQL Driver                            |
+| **Base de datos** | MySQL 8.0                                                               |
+| **DevOps**    | Docker, Docker Compose                                                     |
+| **Otros**     | CORS para comunicación frontend-backend                                    |
+
+## 🚀 Instalación y configuración
+
+### Requisitos previos
+- Docker y Docker Compose instalados
+- Puerto 8080 (backend) y 3306 (MySQL) disponibles
+
+### Pasos para ejecutar
+
+1. **Clonar el repositorio**:
+   ```bash
+   git clone https://github.com/tu-usuario/series-tracker.git
+   cd series-tracker
+   ```
+
+2. **Iniciar servicios con Docker**:
+   ```bash
+   cd database
+   docker-compose up --build -d
+   ```
+
+3. **Iniciar el frontend**:
+   ```bash
+   cd ../frontend
+   # Con Python (recomendado):
+   python -m http.server 3000
+   # O con live-server (Node.js):
+   npx live-server --port=3000
+   ```
+
+4. **Acceder a la aplicación**:
+   Abre tu navegador en:  
+   🌐 [http://localhost:3000](http://localhost:3000)
+
+## 📚 Uso de la API
+
+El backend expone los siguientes endpoints (Base URL: `http://localhost:8080/api`):
+
+```http
+GET    /series             # Obtener todas las series (filtrables)
+POST   /series             # Crear nueva serie
+GET    /series/{id}        # Obtener serie por ID
+PUT    /series/{id}        # Actualizar serie completa
+DELETE /series/{id}        # Eliminar serie
+PATCH  /series/{id}/episode  # Incrementar episodio visto
+PATCH  /series/{id}/upvote   # Aumentar ranking
+PATCH  /series/{id}/downvote # Disminuir ranking
+PATCH  /series/{id}/status   # Cambiar estado
 ```
 
-Si el backend no se inicia correctamente en el puerto `8080`, puedes ejecutarlo manualmente con:
-
-```sh
-docker run --hostname=8f18babadcca \
-  --env=DB_HOST=db \
-  --env=DB_USER=root \
-  --env=DB_PASSWORD=password \
-  --env=DB_NAME=seriesdb \
-  --env=PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
-  --env=GOLANG_VERSION=1.24.1 \
-  --env=GOTOOLCHAIN=local \
-  --env=GOPATH=/go \
-  --network=database_default \
-  --workdir=/app \
-  -p 8080:8080 \
-  --restart=no \
-  --label='com.docker.compose.config-hash=1d5027f4508da3938580824fb8525dbe34094c1d41bbcc783bfe58e9bf8efa0e' \
-  --label='com.docker.compose.container-number=1' \
-  --label='com.docker.compose.depends_on=db:service_started:false' \
-  --label='com.docker.compose.image=sha256:8837a4823c483b09fef11aaa0f5183a3f967492cf990ccbc9abda3ad0ed7c52b' \
-  --label='com.docker.compose.oneoff=False' \
-  --label='com.docker.compose.project=database' \
-  --label='com.docker.compose.project.config_files=C:\Users\domin\OneDrive\Documentos\UVG\2025\S5\Web\lab6_backendOnly\series-tracker\database\docker-compose.yml' \
-  --label='com.docker.compose.project.working_dir=C:\Users\domin\OneDrive\Documentos\UVG\2025\S5\Web\lab6_backendOnly\series-tracker\database' \
-  --label='com.docker.compose.replace=c8506f921746f822721477ec8a69fd650f47e2464849926d5b5932e336c930f4' \
-  --label='com.docker.compose.service=api' \
-  --label='com.docker.compose.version=2.33.1' \
-  --runtime=runc -d database-api
+Ejemplo de cuerpo para crear serie:
+```json
+{
+  "title": "Stranger Things",
+  "status": "Watching",
+  "lastEpisodeWatched": 3,
+  "totalEpisodes": 25,
+  "ranking": 8
+}
 ```
 
-### 2 Iniciar el frontend
-Abre el archivo `index.html` en un servidor local, por ejemplo en el puerto `3000`. Puedes usar `live-server` o un servidor HTTP simple de Python:
+## 🧩 Estructura del proyecto
 
-Con `live-server` (Node.js instalado):
-```sh
-npx live-server --port=3000
 ```
-Con Python:
-```sh
-python -m http.server 3000
+📚 series-tracker
+├── 📂 backend          # Servidor Go
+│   ├── handlers/       # Lógica de endpoints
+│   ├── models/         # Estructuras de datos
+│   ├── db/             # Conexión a MySQL
+│   └── main.go         # Punto de entrada
+├── 📂 frontend         # Interfaz web
+│   ├── components/     # Componentes UI
+│   ├── pages/          # Vistas principales
+│   ├── utils/          # Funciones auxiliares
+│   └── static/         # Assets (imágenes)
+└── 📂 database         # Configuración MySQL
+    ├── init.sql        # Esquema inicial
+    └── docker-compose.yml
 ```
-
-Luego, accede a `http://localhost:3000` en tu navegador.
