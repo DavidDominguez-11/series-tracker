@@ -79,6 +79,8 @@ Ejemplo de cuerpo para crear serie:
   "ranking": 8
 }
 ```
+## Link a una colección de Postman:
+🔗 [Colección de Postman](https://www.postman.com/david-3053003/workspace/lab-onlybackend-collection/collection/43668485-10425fb2-1499-4e0b-b7aa-390d625005f6?action=share&creator=43668485)
 
 ## 🧩 Estructura del proyecto
 
