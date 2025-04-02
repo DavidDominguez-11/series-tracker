@@ -21,6 +21,7 @@ services:
       - DB_USER=root
       - DB_PASSWORD=password
       - DB_NAME=seriesdb
+    restart: unless-stopped
 
 volumes:
   mysql_data:
